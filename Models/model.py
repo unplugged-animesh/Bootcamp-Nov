@@ -10,6 +10,17 @@ class User(db.Model):
     password = db.Column(db.String(50), nullable=False)
     admin = db.Column(db.Boolean(), nullable=False)
     user_cart = db.relationship("Cart", backref="User", lazy=True, cascade='all, delete-orphan')
+    
+    
+    # if User.query.filter_by(username="admin").first()is None:
+    #     admin_password=genrate_password_hash("admin")
+        
+    #     admin=User(username='admin',password=admin_password,role='admin',approved=True)
+        
+    #     db.session.add(admin)
+    #     db.session.commit()
+    # else:
+    #     print('Admin already exixts')    
 
 
 class Category(db.Model):
