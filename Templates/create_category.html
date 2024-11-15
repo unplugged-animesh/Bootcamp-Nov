@@ -4,18 +4,11 @@
 	<title>Create Category</title>
 </head>
 <body>
-	<div class="my=box">
-		<div class="bk">
-			<a href="{{url_for('admin_dashboard',curr_login_id=curr_login_id)}}" class="backbtn">Dashboard</a>
-		</div>
+	<div class="my-box">
+		<div class="back">
+			<a href ="{{url_for('admin_dashboard',curr_login_id=curr_login_id)}}" class="back">Dashboard</a>
+		<div>	
 		<h1> Create Category</h1>
-		{% with messages=get_flashed_messages(with_categories=true) %}	
-		{% if messages %}
-		<ul class="msg">
-			<li>{{messages[-1][1]}}</li>
-		</ul>
-		{% endif %}
-		{% endwith %}	
 		<form method="POST" action="{{url_for('create_category',curr_login_id=curr_login_id)}}">
 			<div>
 				<label for ="name">Category Name:</label>
@@ -23,8 +16,8 @@
 			</div>	
 			<div>
 				<input type="submit" value="Create Category">
-			</div>	
+			</div>
 		</form>
-	</div>		
+	</div>			
 </body>
 </html>
