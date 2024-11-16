@@ -9,10 +9,6 @@
     <div class="my-box">
         <h1>Grocery-Store Login</h1>
         <div class="west">
-            {% if error_message %}
-            <div class="error">{{ error_message }}</div>
-            {% set error_message = None %}
-            {% endif %}
         </div>
         <form method="POST" action="{{ url_for('login') }}">
             <div>
