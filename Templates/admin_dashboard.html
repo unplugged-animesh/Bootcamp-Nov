@@ -13,23 +13,24 @@
         <h1>Hi {{name}}! Welcome to the Admin Dashboard</h1>
         <div class="section">
             <h2>Categories</h2>
-            <a href="{{url_for('create_category',curr_login_id=data.curr_login_id)}}"
-            class="cat-btn">Create Category</a>
+            <a href="{{ url_for('create_category', curr_login_id=data.curr_login_id) }}"
+                class="create-category-btn">Create Category</a>
             {% for category in data.categories %}
-            <div class="cat">
-                <h3 class="cat-name">{{category.name}}</h3>
-                <div class="cat-actions">
-                    <a href="{{url_for('edit_category',curr_login_id=data.curr_login_id,category_id=category.id)}}"
-                    class="cat-btn">Edit</a>
-                    <a href="{{url_for('remove_category',curr_login_id=data.curr_login_id,category_id=category.id)}}"
-                    class="cat-btn">Remove</a>
-                    <a href="{{url_for('create_product',curr_login_id=data.curr_login_id,category_id=category.id)}}"
-                    class="cat-btn">Add Product</a>
-                </div>     
-                <table class="prod-table">
+            <div class="category">
+                <h3 class="category-name">{{ category.name }}</h3>
+                <div class="category-actions">
+                    <a href="{{ url_for('edit_category', curr_login_id=data.curr_login_id, category_id=category.id) }}"
+                        class="edit-category-btn">Edit</a>
+                    <a  href="{{ url_for('remove_category', curr_login_id=data.curr_login_id, category_id=category.id) }}"
+                        class="remove-category-btn">Remove</a>
+                    <a href="{{ url_for('create_product', curr_login_id=data.curr_login_id, category_id=category.id) }}"
+                        class="add-product-btn">Add
+                        Product</a>
+                </div>
+                <table class="product-table">
                     <tr>
                         <th>Product</th>
-                        <th>Price</th>
+                        <th>Rate(₹)</th>
                         <th>Quantity</th>
                         <th>Unit</th>
                         <th>Mf Date</th>
@@ -38,26 +39,25 @@
                     </tr>
                     {% for product in category.products %}
                     <tr>
-                        <td class='Prod-name'>{{product.name}}</td>
-                        <td class='Prod-name'>{{product.price}}</td>
-                        <td class='Prod-name'>{{product.quantity}}</td>
-                        <td class='Prod-name'>{{product.unit}}</td>
-                        <td class='Prod-name'>{{product.mf_date}}</td>
-                        <td class='Prod-name'>{{product.expiry_date}}</td>
+                        <td class="product-name">{{ product.name }}</td>
+                        <td class="product-price">{{ product.price}} ₹</td>
+                        <td class="product-quantity">{{ product.quantity }}</td>
+                        <td class="product-unit">{{ product.unit }}</td>
+                        <td class="product-mf-date">{{ product.mf_date }}</td>
+                        <td class="product-expiry-date">{{ product.expiry_date }}</td>
                         <td>
-                            <a href="{{url_for('edit_product',curr_login_id=data.curr_login_id,product_id=product.id)}}"
-                            class="cat-btn">Edit</a>
-                            <a href="{{url_for('remove_product',curr_login_id=data.curr_login_id,product_id=product.id)}}"
-                            class="cat-btn">Remove</a>
-                        </td>   
+                            <a href="{{ url_for('edit_product', curr_login_id=data.curr_login_id, product_id=product.id) }}"
+                                class="edit-product-btn">Edit</a>
+                            <a href="{{ url_for('remove_product', curr_login_id=data.curr_login_id, product_id=product.id) }}"
+                                class="remove-product-btn">Remove</a>
+                        </td>
                     </tr>
-                    {%endfor%}     
-                </table>         
-            </div>    
-        {% endfor %}    
-    </div>  
-</div>             
-
-    			
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
-</html>	
+
+</html>
