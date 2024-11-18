@@ -316,9 +316,7 @@ def cart(curr_login_id):
 
     return render_template('cart.html', data=data, name=User.query.get(curr_login_id).username)
 
-
-
-@app.route('/customer/<int:curr_login_id>/search' , methods=["GET","POST"])
+@app.route('/customer/<int:curr_login_id>/search' ,methods=["GET","POST"])
 def search(curr_login_id):
     if request.method=="POST":
         search_query=request.form['search']
@@ -329,9 +327,12 @@ def search(curr_login_id):
         categories=Category.query.filter(
             Category.name.ilike(f'%{search_query}%')
         ).all()
+        print(products)
+        
         
         return render_template('search_results.html',curr_login_id=curr_login_id,search_query=search_query,products=products,categories=categories)
     return redirect(url_for('home'))
+    
 
 
 
