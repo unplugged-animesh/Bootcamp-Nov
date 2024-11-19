@@ -334,6 +334,31 @@ def search(curr_login_id):
     return redirect(url_for('home'))
     
 
+@app.route('/admin/<int:curr_login_id>/admin_stats', methods=["GET"])
+def admin_stats(curr_login_id):
+    if 'user_id' in session and session['user_id'] == curr_login_id:
+            user = User.query.get(curr_login_id)
+            if not user.admin:
+                flash('You are not authorized to access the admin dashboard.')
+                return redirect(f"/dashboard/{curr_login_id}")
+            
+            categories=Category.query.all()
+            category_stats=[]
+            for category in categories:
+                product_count=len(category.products)
+                total_quantity=sum([product.quantity for product in category.products])
+                category_stats.append({
+                    'name':category.name,
+                    "product_count":product_count,
+                    "total_quantity":total_quantity,
+                })
+                
+            data={
+                'curr_login_id':curr_login_id,
+                "category_stats":category_stats
+            }
+            return render_template('admin_stats.html',data=data,name=user.username)
+                
 
 
 @app.route('/logout')
